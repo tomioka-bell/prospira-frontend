@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+Dockerfile
+.git
+.gitignore
+npm-debug.log
+*.env
+scripts/post-build.mjs
