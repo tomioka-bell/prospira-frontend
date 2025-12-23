@@ -3,8 +3,8 @@ import JobRecruitmentClient from './recruitment-client';
 import type { Job } from '../types/job';
 
 export const metadata: Metadata = {
-  title: "Recruitment | PROSPIRA Corporation",
-  description: "Join PROSPIRA Corporation's team. Explore career opportunities and job openings at our company.",
+  title: "สรรหาคนเก่ง | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "เข้าร่วมทีมบริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด สำรวจโอกาสการทำงานและตำแหน่งว่างในบริษัท",
 };
 
 export default async function RecruitmentPage() {

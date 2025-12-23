@@ -7,10 +7,10 @@ export default function Header() {
 
   return (
     <div>
-      <div className="relative overflow-hidden bg-linear-to-r from-gray-900 via-black to-gray-900 text-white py-16 px-4 mt-20 border-b-4 border-[#08a4b8]">
+      <div className="relative overflow-hidden bg-linear-to-r from-gray-900 via-black to-gray-900 text-white py-28 px-4 border-b-4 border-[#08a4b8]">
         <div
           className="absolute inset-0 z-0 bg-fixed bg-center bg-cover"
-          style={{ backgroundImage: `url(${team})` }}
+          style={{ backgroundImage: `url(${team.src})` }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-black/50"></div>

@@ -5,8 +5,8 @@ import Content from "./content";
 import Footer from "../components/footer";
 
 export const metadata: Metadata = {
-  title: "About Us | PROSPIRA Corporation",
-  description: "Learn about PROSPIRA Corporation's history, mission, values, and commitment to excellence in industrial solutions.",
+  title: "เกี่ยวกับเรา | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "เรียนรู้เกี่ยวกับประวัติ พันธกิจ และค่านิยมของบริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด พร้อมความมุ่งมั่นในความเป็นเลิศด้านโซลูชั่นอุตสาหกรรม",
 };
 import Overview from "./overview";
 import GlobalFootprint from "./global-footprint";

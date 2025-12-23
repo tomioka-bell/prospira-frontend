@@ -3,7 +3,7 @@ import logo from "../images/logo_footer.png";
 // import { InstagramOutlined, FacebookOutlined, TwitterOutlined, } from "@ant-design/icons";
 import "../css/star-animation.css"
 import { useTranslation } from "react-i18next";
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 function generateStars() {
@@ -19,41 +19,37 @@ function generateStars() {
 
 export default function Footer() {
   const { t } = useTranslation();
-  const [isClient, setIsClient] = useState(false);
+  // Generate stars only client-side; suppress hydration warning since stars are always empty on server render
+  const [stars] = useState<ReturnType<typeof generateStars>>(() => 
+    typeof window !== 'undefined' ? generateStars() : []
+  );
   
-  const stars = useMemo(() => generateStars(), []);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsClient(true);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, []);
+  // Year must be client-only to prevent hydration mismatch
+  const [year] = useState<number>(() => new Date().getFullYear());
 
   return (
     <footer className="bg-black text-gray-300 relative overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-br from-black via-gray-900 to-black opacity-90"></div>
       <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-[#08a4b8] to-transparent"></div>
       
-      {isClient && (
-        <div className="absolute inset-0">
-          {stars.map((star) => (
-            <div
-              key={star.id}
-              className="absolute rounded-full bg-white"
-              style={{
-                top: `${star.top}%`,
-                left: `${star.left}%`,
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                animation: `twinkle ${star.animationDuration}s infinite`,
-                animationDelay: `${star.animationDelay}s`,
-                boxShadow: star.size > 1.5 ? '0 0 4px rgba(8, 164, 184, 0.8)' : '0 0 2px rgba(255, 255, 255, 0.5)'
-              }}
-            />
-          ))}
-        </div>
-      )}
+      {/* Stars container - always rendered to prevent hydration mismatch */}
+      <div className="absolute inset-0">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              top: `${star.top}%`,
+              left: `${star.left}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animation: `twinkle ${star.animationDuration}s infinite`,
+              animationDelay: `${star.animationDelay}s`,
+              boxShadow: star.size > 1.5 ? '0 0 4px rgba(8, 164, 184, 0.8)' : '0 0 2px rgba(255, 255, 255, 0.5)'
+            }}
+          />
+        ))}
+      </div>
 
       <div className="absolute top-20 right-10 w-64 h-64 bg-[#08a4b8] rounded-full opacity-5 blur-3xl"></div>
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#08a4b8] rounded-full opacity-5 blur-3xl"></div>
@@ -117,7 +113,7 @@ export default function Footer() {
         </div>
         <div className="mt-16 border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} <span className="text-[#08a4b8] font-semibold">PROSPIRA CORPORATION</span>. {t("copyright_prefix")}
+            © {year} <span className="text-[#08a4b8] font-semibold">PROSPIRA CORPORATION</span>. {t("copyright_prefix")}
           </p>
         </div>
       </div>

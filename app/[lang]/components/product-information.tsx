@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import withLang from "../utils/normalize-lang";
+import { IoIosArrowDown } from "react-icons/io"; 
 
 type Item = { key: string; label: string; href: string; desc?: string };
 
 
 export default function ProductInformation({
-  isCompanyPage,
+  isProductPage,
   lang,
+  isScrolled = false,
 }: {
-  isCompanyPage?: boolean;
+  isProductPage?: boolean;
   lang?: string;
+  isScrolled?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [hoverCapable, setHoverCapable] = useState(true);
@@ -119,10 +122,10 @@ const productsCol3: Item[] = [
         aria-label="Product menu"
         onClick={() => !hoverCapable && setOpen((v) => !v)}
         className={`relative px-4 py-2 transition-all duration-300 font-medium inline-flex items-center gap-1
-          ${isCompanyPage ? "text-[#08a4b8]" : "text-black hover:text-[#08a4b8]"}`}
+          ${isProductPage ? "text-[#08a4b8]" : isScrolled ? "text-gray-900 hover:text-[#08a4b8]" : "text-white hover:text-[#08a4b8]"}`}
       >
         <span className="relative z-10">{t("product_information")}</span>
-        <DownOutlined className="text-xs relative z-10" />
+        <IoIosArrowDown className="text-xs relative z-10" />
       </button>
 
       {/* เมนูแบบเมก้าเมนู */}

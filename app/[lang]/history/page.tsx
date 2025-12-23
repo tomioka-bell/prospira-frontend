@@ -3,8 +3,8 @@ import HistoryContent from "./content";
 import Header from "./header";
 
 export const metadata: Metadata = {
-  title: "Company History | PROSPIRA Corporation",
-  description: "Discover PROSPIRA Corporation's rich history, milestones, and journey of innovation in industrial products.",
+  title: "ประวัติบริษัท | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "ค้นพบประวัติความเป็นมาอันยาวนาน จุดสำคัญ และการเดินทางของการสร้างนวัตกรรมในอุตสาหกรรมของบริษัท พรอสพิรา",
 };
 
 export default function HistoryPage() {

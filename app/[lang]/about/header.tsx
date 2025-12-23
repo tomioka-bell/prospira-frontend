@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="relative overflow-hidden bg-linear-to-r from-gray-900 via-black to-gray-900 text-white py-16 px-4 mt-20 border-b-4 border-[#08a4b8]">
+      <div className="relative overflow-hidden bg-linear-to-r from-gray-900 via-black to-gray-900 text-white py-28 px-4  border-b-4 border-[#08a4b8]">
         <Image
           src={team}
           alt="Team bird's eye view"

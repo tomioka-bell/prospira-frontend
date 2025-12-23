@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),
-  title: "PROSPIRA Corporation | Premium Products & Solutions",
-  description: "Discover PROSPIRA Corporation's premium products and solutions. Leading provider of air springs, pneumatic chucks, and rubber products with excellence in innovation and customer service.",
-  keywords: "PROSPIRA, air springs, pneumatic chuck, rubber products, industrial solutions",
+  title: "บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด | ผลิตภัณฑ์และโซลูชันคุณภาพ",
+  description: "ค้นหาผลิตภัณฑ์และโซลูชันคุณภาพของบริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด ผู้นำด้านแอร์สปริง ชัคแบบปนิวเมติก และผลิตภัณฑ์ยางเสริมอุตสาหกรรมที่มีนวัตกรรม",
+  keywords: "พรอสพิรา, แอร์สปริง, ชัคปนิวเมติก, ผลิตภัณฑ์ยาง, โซลูชั่นอุตสาหกรรม, industrial solutions",
   icons: {
     icon: "/logo-company.png",
   },

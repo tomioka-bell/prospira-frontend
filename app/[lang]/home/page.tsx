@@ -26,13 +26,24 @@ const EnvironmentalMission = dynamic(() => import("./environmental-mission"), {
   ssr: true 
 });
 
-export const metadata: Metadata = {
-  title: "Home | PROSPIRA Corporation",
-  description: "Welcome to PROSPIRA Corporation - your partner for premium industrial products and innovative solutions.",
-};
-
 interface HomePageProps {
   params: Promise<{ lang: string }>;
+}
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { lang } = await params;
+
+  if (lang === "th") {
+    return {
+      title: "หน้าแรก | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+      description: "ยินดีต้อนรับสู่บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด - ผู้นำด้านผลิตภัณฑ์อุตสาหกรรมคุณภาพและโซลูชันนวัตกรรมยางกันสั่นสะเทือน",
+    };
+  }
+  // Default English metadata
+  return {
+    title: "Home | PROSPIRA (THAILAND) CO., LTD. ",
+    description: "Welcome to PROSPIRA (THAILAND) CO., LTD. - your partner for premium industrial products and innovative solutions.",
+  };
 }
 
 export async function generateStaticParams() {
@@ -47,7 +58,6 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <Navbar />
       <main>
         <Header lang={lang} />
         <section id="greeting">

@@ -4,8 +4,8 @@ import type { NewsItemApi, NewsItem } from "../types/company-news";
 import { buildImageURL } from "../utils/get-image";
 
 export const metadata: Metadata = {
-  title: "Activities | PROSPIRA Corporation",
-  description: "Explore all activities, news, and updates from PROSPIRA Corporation.",
+  title: "กิจกรรมทั้งหมด | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "สำรวจกิจกรรมและข่าวสารล่าสุดจากบริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
 };
 
 const PAGE_LIMIT = 6;

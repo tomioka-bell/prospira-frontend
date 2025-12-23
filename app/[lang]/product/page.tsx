@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Products | PROSPIRA Corporation",
-  description: "Discover PROSPIRA's premium products including air springs, pneumatic chucks, and rubber solutions.",
+  title: "ผลิตภัณฑ์ | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "ค้นพบผลิตภัณฑ์คุณภาพของพรอสพิรา รวมถึงแอร์สปริง ชัคปนิวเมติก และโซลูชั่นผลิตภัณฑ์ยาง",
 };
 
 export default function ProductPage() {

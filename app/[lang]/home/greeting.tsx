@@ -125,7 +125,13 @@ export default function Greeting() {
             </svg>
             <div className="h-px w-12 bg-linear-to-l from-transparent to-[#08a4b8]" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#08a4b8] border-b-4 border-[#cfdfe1] tracking-tight mb-2">
+          <h1 
+            className="text-4xl md:text-5xl font-extrabold text-[#c2ecf1] tracking-tight mb-2"
+            style={{
+              WebkitTextStroke: '0.8px #08a4b8',
+              paintOrder: 'stroke fill'
+            }}
+          >
             {t("section_title_th", { defaultValue: "สารจากผู้บริหาร" })}
           </h1>
           <p className="text-gray-700 text-sm uppercase tracking-widest">

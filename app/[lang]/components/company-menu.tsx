@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
+import { IoIosArrowDown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import withLang from "../utils/normalize-lang";
 
 type Item = { key: string; label: string; href: string; desc?: string };
 
-export default function CompanyMenu({ isCompanyPage, lang }: { isCompanyPage?: boolean, lang?: string }) {
+export default function CompanyMenu({ isCompanyPage, lang, isScrolled = false }: { isCompanyPage?: boolean, lang?: string, isScrolled?: boolean }) {
   const [open, setOpen] = useState(false);
   const [hoverCapable, setHoverCapable] = useState(true);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -88,10 +89,10 @@ export default function CompanyMenu({ isCompanyPage, lang }: { isCompanyPage?: b
         aria-expanded={open}
         onClick={() => !hoverCapable && setOpen(v => !v)}
         className={`relative px-4 py-2 transition-all duration-300 font-medium inline-flex items-center gap-1
-          ${isCompanyPage ? "text-[#08a4b8]" : "text-black hover:text-[#08a4b8]"}`}
+          ${isCompanyPage ? "text-[#08a4b8]" : isScrolled ? "text-gray-900 hover:text-[#08a4b8]" : "text-white hover:text-[#08a4b8]"}`}
       >
         <span className="relative z-10">{t("company")}</span>
-        <DownOutlined className="text-xs relative z-10" />
+        <IoIosArrowDown className="text-xs relative z-10" />
       </button>
 
       <div

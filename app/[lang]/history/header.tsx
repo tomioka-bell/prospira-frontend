@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     <div>
-      <div className="relative overflow-hidden text-white py-16 px-4 mt-20 border-b-4 border-[#08a4b8] bg-black">
+      <div className="relative overflow-hidden text-white py-28 px-4  border-b-4 border-[#08a4b8] bg-black">
         {/* ดีโอพื้นหลัง */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"

@@ -1,6 +1,6 @@
 "use client";
 import styles from "../css/home.module.css";
-import logo from "../images/logo_footer.png";
+import logo from "../images/logo_header.png";
 import Image from "next/image";
 import { RightOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";

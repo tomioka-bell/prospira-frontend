@@ -4,8 +4,8 @@ import Footer from "../components/footer";
 import Header from "./header";
 
 export const metadata: Metadata = {
-  title: "Contact Us | PROSPIRA Corporation",
-  description: "Get in touch with PROSPIRA Corporation. Contact us for inquiries, support, or business opportunities.",
+  title: "ติดต่อเรา | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "ติดต่อบริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด สอบถามข้อมูล รับสนับสนุน หรือหาโอกาสทางการค้า",
 };
 
 export default function ContactPage() {

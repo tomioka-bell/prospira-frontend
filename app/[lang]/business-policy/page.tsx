@@ -3,8 +3,8 @@ import BusinessPolicyContent from "./content";
 import Header from "./header";
 
 export const metadata: Metadata = {
-  title: "Business Policy | PROSPIRA Corporation",
-  description: "Review PROSPIRA Corporation's business policies and commitment to quality, sustainability, and customer satisfaction.",
+  title: "นโยบายทางการค้า | บริษัท พร๊อสไพร่า (ประเทศไทย) จำกัด",
+  description: "ตรวจสอบนโยบายทางการค้าและความมุ่งมั่นของบริษัท พรอสพิราต่อคุณภาพ ความยั่งยืน และความพึงพอใจของลูกค้า",
 };
 
 export default function BusinessPolicyPage() {

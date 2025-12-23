@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Build standalone server bundle for Docker deployment
   output: "standalone",
   
   images: {
@@ -21,6 +20,17 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
+  // Redirects
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/th",
+        permanent: true,
+      },
+    ];
+  },
+
   // Headers for SEO and performance
   async headers() {
     return [
@@ -73,9 +83,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  // Note: Redirects are not supported with static export
-  // Users will need to access /th or /en directly
 };
 
 export default nextConfig;

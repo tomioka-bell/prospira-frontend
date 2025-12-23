@@ -11,6 +11,7 @@ import { Dropdown } from "antd";
 import type { MenuProps } from "antd";
 
 import logo from "../images/logo_header.svg";
+import logo_white from "../images/logo_footer.svg";
 import CompanyMenu from "./company-menu";
 import ProductInformation from "./product-information";
 
@@ -29,6 +30,7 @@ export default function Navbar({ }: NavbarProps = {}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCompanyMenuOpen, setIsCompanyMenuOpen] = useState(false);
+  const [isProductMenuOpen, setIsProductMenuOpen] = useState(false);
   const [isIpad, setIsIpad] = useState(false);
 
   const { t, i18n } = useTranslation();
@@ -48,6 +50,10 @@ export default function Navbar({ }: NavbarProps = {}) {
   };
 
   const isCompanyPage = ["/about", "/history", "/vision", "/team"].includes(
+    pathWithoutLang
+  );
+
+  const isProductPage = ["/product/rubber", "/product/air-spring", "/product/pneumatic-chuck"].includes(
     pathWithoutLang
   );
 
@@ -99,14 +105,14 @@ export default function Navbar({ }: NavbarProps = {}) {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/80 backdrop-blur-xl"
-          : "bg-linear-to-r from-white via-gray-50 to-white"
+          ? "bg-white/50 backdrop-blur-2xl border-b border-white/20 shadow-lg"
+          : "bg-transparent"
       }`}
       aria-label="Main navigation"
     >
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo - show white logo when not scrolled, regular logo when scrolled */}
           <div className="shrink-0">
             <Link
               href="/"
@@ -114,11 +120,11 @@ export default function Navbar({ }: NavbarProps = {}) {
               className="flex items-center"
             >
               <Image
-                src={logo}
+                src={isScrolled ? logo : logo_white}
                 alt="Logo"
                 width={176}
                 height={32}
-                className="h-4 sm:h-8 lg:h-8 w-44"
+                className="h-4 sm:h-8 lg:h-8 w-44 transition-all duration-500"
               />
             </Link>
           </div>
@@ -135,16 +141,17 @@ export default function Navbar({ }: NavbarProps = {}) {
               className={`relative px-4 py-2 transition-all duration-300 font-medium group ${
                 isActivePath("/")
                   ? "text-[#08a4b8]"
-                  : "text-gray-900 hover:text-[#08a4b8]"
+                  : isScrolled ? "text-gray-900 hover:text-[#08a4b8]" : "text-white hover:text-[#08a4b8]"
               }`}
             >
               <span className="relative z-10">{t("home")}</span>
             </Link>
 
-            <CompanyMenu isCompanyPage={isCompanyPage} lang={lang} />
+            <CompanyMenu isCompanyPage={isCompanyPage} lang={lang} isScrolled={isScrolled} />
             <ProductInformation
-              isCompanyPage={isCompanyPage}
+              isProductPage={isProductPage}
               lang={lang}
+              isScrolled={isScrolled}
             />
 
             <Link
@@ -155,7 +162,7 @@ export default function Navbar({ }: NavbarProps = {}) {
               className={`relative px-4 py-2 transition-all duration-300 font-medium group ${
                 isActivePath("/recruitment")
                   ? "text-[#08a4b8]"
-                  : "text-gray-900 hover:text-[#08a4b8]"
+                  : isScrolled ? "text-gray-900 hover:text-[#08a4b8]" : "text-white hover:text-[#08a4b8]"
               }`}
             >
               <span className="relative z-10">
@@ -216,11 +223,15 @@ export default function Navbar({ }: NavbarProps = {}) {
           </div>
 
           {/* Mobile toggle button */}
-          <div className={`${isIpad ? "" : "xl:hidden"}`}>
+          <div className={`${isIpad ? "" : "xl:hidden"} relative z-50`}>
             <button
               type="button"
               onClick={toggleMobileMenu}
-              className="relative px-3 py-3 min-w-11 min-h-11 text-gray-900 hover:text-blue-600 focus:outline-none rounded-lg hover:bg-blue-50 transition-all duration-300"
+              className={`relative px-3 py-3 min-w-11 min-h-11 focus:outline-none rounded-lg transition-all duration-300 ${
+                isScrolled
+                  ? "text-gray-900 hover:text-blue-600 hover:bg-blue-50"
+                  : "text-gray-800 hover:text-[#08a4b8] hover:bg-white/20"
+              }`}
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileMenuOpen}
               aria-controls="main-navigation-mobile"
@@ -254,11 +265,11 @@ export default function Navbar({ }: NavbarProps = {}) {
       {/* Mobile Menu */}
       <div
         id="main-navigation-mobile"
-        className={`${isIpad ? "" : "xl:hidden"} transition-all duration-500 ease-out overflow-hidden ${
-          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`${isIpad ? "" : "xl:hidden"} fixed top-20 left-0 right-0 z-30 transition-all duration-500 ease-out overflow-hidden backdrop-blur-2xl ${
+          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-4 pt-4 pb-6 space-y-2 bg-linear-to-b from-white to-gray-50 backdrop-blur-xl border-t border-gray-100">
+        <div className="px-4 pt-4 pb-6 space-y-2 bg-white/95 backdrop-blur-xl border-t border-white/20">
           <Link
             href="/"
             aria-current={isActivePath("/") ? "page" : undefined}
@@ -366,19 +377,66 @@ export default function Navbar({ }: NavbarProps = {}) {
             </div>
           </div>
 
+          {/* Mobile Product Dropdown */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setIsProductMenuOpen?.((prev: boolean) => !prev)}
+              className="w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 font-medium text-gray-900 hover:bg-linear-to-r hover:from-blue-50 hover:to-blue-100 hover:text-[#08a4b8]"
+              aria-label="Toggle product menu"
+              aria-expanded={isProductMenuOpen}
+              aria-haspopup="true"
+              aria-controls="product-menu-mobile"
+            >
+              <span>{t("product_information")}</span>
+              <DownOutlined
+                className={`text-xs transition-transform duration-300 ${isProductMenuOpen ? "rotate-180" : ""}`}
+                aria-hidden="true"
+              />
+            </button>
+            <div
+              id="product-menu-mobile"
+              className={`overflow-hidden transition-all duration-300 ${isProductMenuOpen ? "max-h-60 opacity-100 mt-2" : "max-h-0 opacity-0"}`}
+            >
+              <div className="ml-4 space-y-1">
+                <Link
+                  href={`/${lang}/product/rubber`}
+                  className="block px-4 py-2 text-sm rounded-lg transition-all duration-300 text-gray-900 hover:bg-blue-50 hover:text-[#08a4b8]"
+                  onClick={toggleMobileMenu}
+                >
+                  ชิ้นส่วนยางรองแท่นเครื่อง
+                </Link>
+                <Link
+                  href={`/${lang}/product/air-spring`}
+                  className="block px-4 py-2 text-sm rounded-lg transition-all duration-300 text-gray-900 hover:bg-blue-50 hover:text-[#08a4b8]"
+                  onClick={toggleMobileMenu}
+                >
+                  แอร์สปริง
+                </Link>
+                <Link
+                  href={`/${lang}/product/pneumatic-chuck`}
+                  className="block px-4 py-2 text-sm rounded-lg transition-all duration-300 text-gray-900 hover:bg-blue-50 hover:text-[#08a4b8]"
+                  onClick={toggleMobileMenu}
+                >
+                  Pneumatic Chuck
+                </Link>
+              </div>
+            </div>
+          </div>
+
+
+          {/* Recruitment */}
           <Link
-            href={`/${lang}/services`}
-            aria-current={
-              isActivePath("/services") ? "page" : undefined
-            }
+            href={`/${lang}/recruitment`}
+            aria-current={isActivePath("/recruitment") ? "page" : undefined}
             className={`block px-4 py-3 rounded-xl transition-all duration-300 font-medium transform hover:translate-x-1 ${
-              isActivePath("/services")
+              isActivePath("/recruitment")
                 ? "text-[#08a4b8] bg-blue-50"
                 : "text-gray-900 hover:bg-linear-to-r hover:from-blue-50 hover:to-blue-100 hover:text-[#08a4b8]"
             }`}
             onClick={toggleMobileMenu}
           >
-            {t("services")}
+            {t("recruitment")}
           </Link>
 
           <Link
