@@ -2,9 +2,10 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const req = (require as any).context("./", true, /\.json$/);
 
-const resources: Record<string, { translation: any }> = {};
+const resources: Record<string, { translation: Record<string, unknown> }> = {};
 
 req.keys().forEach((path: string) => {
   const langMatch = path.match(/\.\/([^/]+)\//);
@@ -21,7 +22,7 @@ req.keys().forEach((path: string) => {
 if (!i18n.isInitialized) {
   i18n.use(initReactI18next).init({
     resources,
-    lng: "en",
+    lng: "th",
     fallbackLng: "th",
     interpolation: { escapeValue: false },
   });

@@ -12,7 +12,7 @@ export default function Overview() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-3xl md:text-5xl font-extrabold text-gray-900 text-center drop-shadow-xl leading-tight mb-10"
+        className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center drop-shadow-xl leading-tight mb-10"
       >
         Overview of{" "}
         <span className="text-[#08a4b8]">Prospira Thailand</span> – Certificate

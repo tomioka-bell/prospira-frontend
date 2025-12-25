@@ -6,34 +6,45 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Image from "next/image";
 
-function generateStars() {
-  return Array.from({ length: 100 }, (_, i) => ({
-    id: i,
-    top: Math.random() * 100,
-    left: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    animationDelay: Math.random() * 3,
-    animationDuration: Math.random() * 3 + 2
-  }));
+// Seeded random number generator for consistent star positions
+function seededRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
 }
+
+// Generate stars with seeded randomness for consistent positions across SSR/client
+function generateStars() {
+  return Array.from({ length: 100 }, (_, i) => {
+    const seed = i * 12.9898; // Use index as seed for consistency
+    return {
+      id: i,
+      top: seededRandom(seed) * 100,
+      left: seededRandom(seed + 78.233) * 100,
+      size: seededRandom(seed + 43.141) * 2 + 1,
+      animationDelay: seededRandom(seed + 94.673) * 3,
+      animationDuration: seededRandom(seed + 33.884) * 3 + 2
+    };
+  });
+}
+
+// Pre-generate stars once - they will be the same on server and client
+const STARS = generateStars();
 
 export default function Footer() {
   const { t } = useTranslation();
-  // Generate stars only client-side; suppress hydration warning since stars are always empty on server render
-  const [stars] = useState<ReturnType<typeof generateStars>>(() => 
-    typeof window !== 'undefined' ? generateStars() : []
-  );
+  const [stars] = useState<ReturnType<typeof generateStars>>(STARS);
   
-  // Year must be client-only to prevent hydration mismatch
-  const [year] = useState<number>(() => new Date().getFullYear());
+  // Use current year - use suppressHydrationWarning for the year text since it's inherently time-dependent
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-black text-gray-300 relative overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-br from-black via-gray-900 to-black opacity-90"></div>
       <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-[#08a4b8] to-transparent"></div>
       
-      {/* Stars container - always rendered to prevent hydration mismatch */}
-      <div className="absolute inset-0">
+      {/* Stars container - rendered with seeded random for consistent positions */}
+      {/* suppressHydrationWarning: star animations are purely decorative, precision differences acceptable */}
+      <div className="absolute inset-0" suppressHydrationWarning>
         {stars.map((star) => (
           <div
             key={star.id}
@@ -53,8 +64,6 @@ export default function Footer() {
 
       <div className="absolute top-20 right-10 w-64 h-64 bg-[#08a4b8] rounded-full opacity-5 blur-3xl"></div>
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#08a4b8] rounded-full opacity-5 blur-3xl"></div>
-
-
 
       <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -112,7 +121,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-16 border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 text-sm" suppressHydrationWarning>
             © {year} <span className="text-[#08a4b8] font-semibold">PROSPIRA CORPORATION</span>. {t("copyright_prefix")}
           </p>
         </div>

@@ -18,13 +18,13 @@ export default function CreatingCustomer() {
                 <div className="absolute inset-0 bg-black/50"></div>
 
                 <div className="relative h-full flex flex-col items-center justify-center text-white text-center px-6 z-10">
-                    <h1 className={`text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl ${styles.animateSlideUp}`}>
+                    <h1 className={`text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl ${styles.animateSlideUp}`} suppressHydrationWarning>
                         {t("banner_title_p1")}
                         <span className="mt-2 bg-linear-to-r from-cyan-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent">
                             {t("banner_title_highlight")}
                         </span>
                     </h1>
-                    <p className={`max-w-3xl text-base md:text-lg leading-relaxed text-gray-100 drop-shadow-lg ${styles.animateSlideUp}`} style={{ animationDelay: "0.2s" }}>
+                    <p className={`max-w-3xl text-base md:text-lg leading-relaxed text-gray-100 drop-shadow-lg ${styles.animateSlideUp}`} style={{ animationDelay: "0.2s" }} suppressHydrationWarning>
                         {t("banner_desc_p1")}
                     </p>
                 </div>
@@ -41,13 +41,13 @@ export default function CreatingCustomer() {
                 </div>
 
                 <div className="flex-1 text-left">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl text-black">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl text-black" suppressHydrationWarning>
                         {t("content_title")}
                     </h1>
-                    <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600 drop-shadow-lg">
+                    <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600 drop-shadow-lg" suppressHydrationWarning>
                         {t("content_slogan")}
                     </p>
-                    <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600 drop-shadow-lg">
+                    <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600 drop-shadow-lg" suppressHydrationWarning>
                         {t("content_desc_p1")}
                     </p>
                 </div>

@@ -6,16 +6,30 @@ import { ConfigProvider } from "antd";
 import i18n from "@/i18n/config";
 import Navbar from "./components/navbar";
 
-export default function ClientLayout({ children }: { children: React.ReactNode }) {
+interface ClientLayoutProps {
+  children: React.ReactNode;
+  lang?: string;
+}
+
+export default function ClientLayout({ children, lang = "en" }: ClientLayoutProps) {
   const pathname = usePathname();
+  const isAdminRoute = pathname.includes("/admin");
 
   useEffect(() => {
-    const lang = pathname.split("/")[1] || "en";
+    const currentLang = pathname.split("/")[1] || lang;
 
-    if (i18n.language !== lang) {
+    if (i18n.language !== currentLang) {
+      i18n.changeLanguage(currentLang);
+    }
+  }, [pathname, lang]);
+
+  // Initialize i18n with the correct language from props
+  // This prevents hydration mismatch by ensuring client uses same language as server
+  useEffect(() => {
+    if (i18n.language !== lang && lang !== "en") {
       i18n.changeLanguage(lang);
     }
-  }, [pathname]);
+  }, [lang]);
 
   return (
     <ConfigProvider
@@ -25,7 +39,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         },
       }}
     >
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
       {children}
     </ConfigProvider>
   );

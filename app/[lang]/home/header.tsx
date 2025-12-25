@@ -38,7 +38,7 @@ export default function Header({ lang }: HeaderProps) {
       <div className="absolute inset-0" aria-hidden="true">
         <motion.video
           className="w-full h-full object-cover"
-          src="/218541.mp4"
+          src="/prospira-video.mp4"
           autoPlay={!prefersReduced}
           loop
           muted
@@ -52,11 +52,12 @@ export default function Header({ lang }: HeaderProps) {
           animate={prefersReduced ? undefined : { scale: 1.05 }}
           transition={prefersReduced ? undefined : { duration: 18, ease: "linear" }}
         >
-          <source src="/218541.mp4" type="video/mp4" />
+          <source src="/prospira-video.mp4" type="video/mp4" />
         </motion.video>
 
         <motion.div
           className="absolute inset-0 bg-linear-to-l from-black/70 via-black/50 to-transparent"
+          // className="absolute inset-0 bg-linear-to-l from-black/70 via-black/50 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}

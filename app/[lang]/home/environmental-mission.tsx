@@ -18,13 +18,13 @@ export default function EnvironmentalMission() {
                 <div className="absolute inset-0 bg-black/50"></div>
 
                 <div className="relative h-full flex flex-col items-center justify-center text-white text-center px-6 z-10">
-                    <h1 className={`text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl ${styles.animateSlideUp}`}>
+                    <h1 className={`text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl ${styles.animateSlideUp}`} suppressHydrationWarning>
                         {t("banner_title_main_3")} 
                         <span className="ml-4 mt-2 bg-linear-to-r from-cyan-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent">
                             {t("banner_title_highlight_3")}
                         </span>
                     </h1>
-                    <p className={`max-w-3xl text-base md:text-lg leading-relaxed text-gray-100 drop-shadow-lg ${styles.animateSlideUp}`} style={{ animationDelay: "0.2s" }}>
+                    <p className={`max-w-3xl text-base md:text-lg leading-relaxed text-gray-100 drop-shadow-lg ${styles.animateSlideUp}`} style={{ animationDelay: "0.2s" }} suppressHydrationWarning>
                         {t("banner_desc_3")}
                     </p>
                 </div>
@@ -32,11 +32,11 @@ export default function EnvironmentalMission() {
 
             <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-8 sm:px-12 md:px-24 lg:px-4 z-10 max-w-7xl mx-auto py-20">
                 <div className="flex-1 ">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl text-black">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-2xl text-black" suppressHydrationWarning>
                         {t("content_title_3")}
                     </h1>
                     
-                    <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600 drop-shadow-lg">
+                    <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600 drop-shadow-lg" suppressHydrationWarning>
                         {t("content_desc_3")}
                     </p>
                 </div>
